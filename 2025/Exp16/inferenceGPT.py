@@ -1120,10 +1120,10 @@ class inferenceGPT:
         rows = []
         for label, scores in self.eval_log.items():
             before_vals = scores["before"]
-            after_vals = scores["after"]
+            after_vals  = scores["after"]
 
             before_mean = np.mean(before_vals) if before_vals else np.nan
-            after_mean = np.mean(after_vals) if after_vals else np.nan
+            after_mean  = np.mean(after_vals) if after_vals else np.nan
 
             # Lower is better for MASE, RMSE, MAE. Higher is better for R²
             is_inverse = any(bad in label.upper() for bad in ["MASE", "RMSE", "MAE"])
