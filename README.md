@@ -1,6 +1,6 @@
 # UCIdataTS_GPT_preferencesDPO
 
-* Paper 1: A Preferences Dataset and Annotation Scheme to Fine Tune Time Series GPTs
+* Paper 1: A Preferences Corpus and Annotation Scheme to Fine Tune Time Series GPTs
 
 * Paper 2: Training Time Series GPTs with Direct Preference Optimization or GRPO 
 
