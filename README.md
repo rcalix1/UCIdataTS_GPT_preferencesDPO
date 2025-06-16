@@ -2,7 +2,7 @@
 
 * Paper 1: A Preferences Dataset and Annotation Scheme to Fine Tune Time Series GPTs
 
-* Paper 2: Training Time Series GPTs with Direct Preference Optimization
+* Paper 2: Training Time Series GPTs with Direct Preference Optimization or GRPO 
 
 ## UCI data sets
 
