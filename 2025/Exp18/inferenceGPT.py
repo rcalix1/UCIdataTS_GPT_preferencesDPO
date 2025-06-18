@@ -51,7 +51,7 @@ class inferenceGPT:
         self.how_many            = 9
         self.before_or_after_res = "before"  ##        "before" or "after" 
         self.eval_log            = {}  # {label: {"before": [...], "after": [...]}}
-        self.epochs_GRPO_kl      = 5   ## 5
+        self.epochs_GRPO_kl      = 5     ## 5
         self.which_data_chunk    = "000to500"
         ############################################################################
         ## these parameters control prefs annotation, DPO, GRPO, etc.    ###########
@@ -61,7 +61,7 @@ class inferenceGPT:
         self.manual_annotation        = True     # manual or auto         ## step 6
         self.method_annotation        = "r2"     # mse, dtw, r2, r2_neg   ## step 5
         self.auto_annotation_min_diff = 0.0000000002                      ## step 4
-        self.DPOannotate              = False                              ## step 3
+        self.DPOannotate              = False                             ## step 3
         self.DPOtrain                 = True                              ## step 2
         ## GPT dropout GLOBAL 0.8 (annot) OR 0.1 (normal)                 ## step 1
         ## Noise goblin level input in annotation                         ## step 0
@@ -432,9 +432,8 @@ class inferenceGPT:
 
         self.DPO_all_real_si_000to500 = []
         self.DPO_all_pred_si_000to500 = []
-
-    
-    
+        
+        
     def print_first_few_R2(self, real_si_concat, pred_si_concat, THE_FIRST_FEW ):
 
         first_n = THE_FIRST_FEW
@@ -1121,10 +1120,10 @@ class inferenceGPT:
         rows = []
         for label, scores in self.eval_log.items():
             before_vals = scores["before"]
-            after_vals = scores["after"]
+            after_vals  = scores["after"]
 
             before_mean = np.mean(before_vals) if before_vals else np.nan
-            after_mean = np.mean(after_vals) if after_vals else np.nan
+            after_mean  = np.mean(after_vals) if after_vals else np.nan
 
             # Lower is better for MASE, RMSE, MAE. Higher is better for R²
             is_inverse = any(bad in label.upper() for bad in ["MASE", "RMSE", "MAE"])
@@ -1199,7 +1198,7 @@ class inferenceGPT:
     def dpo_finetune_with_kl(self, model, base_model, preference_data, optimizer=None, device="cuda", epochs=3, beta=0.05):
         model.train()
         base_model.eval()
-           
+        
         
         if self.freeze_layers:
             ## freeze_mode: "blocks" or "ff_layers"
@@ -1245,7 +1244,7 @@ class inferenceGPT:
                     logits = torch.stack([-pref_score / T, -rej_score / T]).unsqueeze(0)  # lower is better
                     labels = torch.tensor([0], device=device)  # class 0 = preferred
                     preference_loss = F.cross_entropy(logits, labels)
-                    beta = 0.3     ## 0.2     ## 1.0    ## 0.1     ## 0.05    0.1 or 0.05
+                    beta =   0.3   ##  0.2     ## 1.0    ## 0.1     ## 0.05    0.1 or 0.05
                 else:
                     # DPO loss: softplus on preference margin
                     preference_loss = F.softplus(rej_score - pref_score)

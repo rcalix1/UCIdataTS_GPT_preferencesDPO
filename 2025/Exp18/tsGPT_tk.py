@@ -53,7 +53,7 @@ class ParamsGPT:
         self.n_layer           = 6         ## 6 eoncoder layers
         self.dropout           = 0.1
         self.seq_length        = self.block_size 
-        self.num_features      = 35        ## from delta si to coke rate
+        self.num_features      = 28        ## 35        ## from delta si to coke rate
         self.input_size        = self.num_features 
         self.output_size       = self.num_features 
         self.results_string    = ''
